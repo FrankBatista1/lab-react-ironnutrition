@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import foods from "./foods.json";
+import { useState } from 'react'
+import { Foodbox } from "./Foodbox";
+import { OmitProps } from "antd/lib/transfer/ListBody";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const [food, setfood] = useState(foods)
+  
+return (
+  <div>
+    {food.map((meal) => {
+      return (
+    <div>
+      {/* <p> {meal.name} </p>
+      <img src={meal.image} style={{width: 300}} alt="mealphoto"/> */}
+      <Foodbox name={meal.name} image={meal.image} calories= {meal.calories} servings={meal.servings}/>
     </div>
-  );
+      )
+    })}
+    
+  </div>
+  )
 }
 
 export default App;
