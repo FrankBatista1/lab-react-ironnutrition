@@ -2,19 +2,39 @@ import "./App.css";
 import foods from "./foods.json";
 import { useState } from 'react'
 import { Foodbox } from "./Foodbox";
-import { OmitProps } from "antd/lib/transfer/ListBody";
+import { AddFoodForm } from "./AddFoodForm";
 
 
 function App() {
-const [food, setfood] = useState(foods)
+const [food, setFood] = useState(foods)
+const [singleFood, setSingleFood] = useState({
+  name: "",
+  image: "",
+  calories: "", 
+  servings: ""
+});
+
+const handleSubmit = (e) => {
+    e.preventDefautl();
+    setFood([...food, singleFood])
+    setSingleFood({
+    name: "",
+    image: "",
+    calories: "", 
+    servings: "",
+  })
+} 
+
+
+
+const handleChange = (letter) => (event) => setSingleFood({...singleFood, [letter]: event.target.value})//????
   
 return (
   <div>
+    <AddFoodForm functionToChange={handleChange}/>
     {food.map((meal) => {
       return (
     <div>
-      {/* <p> {meal.name} </p>
-      <img src={meal.image} style={{width: 300}} alt="mealphoto"/> */}
       <Foodbox name={meal.name} image={meal.image} calories= {meal.calories} servings={meal.servings}/>
     </div>
       )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Divider, Button } from "antd";
+import { Card, Col, Button } from "antd";
 
 
 export const Foodbox = (props) => {
